@@ -91,6 +91,7 @@ st.title("Proto-events")
 st.write("We use [Spacy](https://spacy.io/universe/project/video-spacys-ner-model-alt) to extract entities from the text and [Riveter](http://maartensap.com/pdfs/antoniak2023riveter.pdf) to extract verbs that as proxy for the event triggers.")
 
 df = None
+option =None
 st.subheader('Select Data to analyse')
 in_type = st.selectbox(
         '',
@@ -102,12 +103,12 @@ if in_type == 'Upload':
         df = pd.read_csv(uploaded_file)
 elif in_type == 'EIT News Dataset':
     df = pd.read_csv('data/eit_news - EIT news.csv')
-
+    option = 'body'
 else:
     st.info("You haven't selected a data yet.")
 
 if df is not None:
-    option = 'body'
+
     if st.checkbox('Show raw data'):
         options = [None] + list(df.columns)
         st.subheader('Raw data')
